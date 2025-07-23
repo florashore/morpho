@@ -49,19 +49,4 @@ contract ERC20Mock is IERC20 {
 
         return true;
     }
-
-    function transferto(address from, address to, uint256 amount) public virtual returns (bool) {
-        require(allowance[from][msg.sender] >= amount, "insufficient allowance");
-
-        allowance[from][msg.sender] -= amount;
-
-        require(balanceOf[from] >= amount, "insufficient balance");
-
-        balanceOf[from] -= amount;
-        balanceOf[to] += amount;
-
-        emit Transfer(from, to, amount);
-
-        return true;
-    }
 }
